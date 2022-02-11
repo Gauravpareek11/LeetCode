@@ -8,18 +8,27 @@ class Solution {
         //     curr=i+temp;
         // }
         // return Math.max(prev,curr);
-        int[] dp=new int[nums.length+1];
-        Arrays.fill(dp,-1);
-        dp[0]=nums[0];
+        // int[] dp=new int[nums.length+1];
+        // Arrays.fill(dp,-1);
+        // dp[0]=nums[0];
         // return solve(nums.length-1,nums,dp);
-        int pick;
+        // int pick;
+        // for(int i=1;i<nums.length;i++){
+        //     if(i>1) pick=dp[i-2]+nums[i];
+        //     else pick=nums[i];
+        //     int n_pick=dp[i-1]+0;
+        //     dp[i]=Math.max(pick,n_pick);
+        // }
+        // return dp[nums.length-1];
+        int prev=nums[0];
+        int prev2=0;
+        int curr;
         for(int i=1;i<nums.length;i++){
-            if(i>1) pick=dp[i-2]+nums[i];
-            else pick=nums[i];
-            int n_pick=dp[i-1]+0;
-            dp[i]=Math.max(pick,n_pick);
+            curr=Math.max(prev,prev2+nums[i]);
+            prev2=prev;
+            prev=curr;
         }
-        return dp[nums.length-1];
+        return prev;
     }
     int solve(int n,int[] nums,int[] dp){
         if(n==0) return nums[0];
