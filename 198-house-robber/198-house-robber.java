@@ -30,12 +30,12 @@ class Solution {
         }
         return prev;
     }
-    int solve(int n,int[] nums,int[] dp){
-        if(n==0) return nums[0];
-        if(n<0) return 0;
-        if(dp[n]!=-1) return dp[n];
-        int take=nums[n]+solve(n-2,nums,dp);
-        int n_take=0+solve(n-1,nums,dp);
-        return dp[n]=Math.max(take,n_take);
-    }
+    // int solve(int n,int[] nums,int[] dp){
+    //     if(n==0) return nums[0];
+    //     if(n<0) return 0;
+    //     if(dp[n]!=-1) return dp[n];
+    //     int take=nums[n]+solve(n-2,nums,dp);
+    //     int n_take=0+solve(n-1,nums,dp);
+    //     return dp[n]=Math.max(take,n_take);
+    // }
 }
