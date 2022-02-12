@@ -51,23 +51,4 @@ class Solution {
         }
         return c==1;
     }
-    void dfs(String a,HashMap<String,List<String>>m1,String endWord,int count,List<String>Visited){
-        Visited.add(a);
-        if(a.equals(endWord)){
-            Visited.remove(a);
-            ans=Math.min(ans,count+1);
-            // System.out.println(ans);
-            // return;
-        }
-        
-        // if(a.equals(endWord)) Visited.remove(a);
-        for(String x:m1.get(a)){
-            if(!Visited.contains(x)){
-                // Visited.add(x);
-                dfs(x,m1,endWord,count+1,Visited);
-                // Visited.remove(x);
-            }
-        }
-        // Visited.remove(a);
-    }
 }
