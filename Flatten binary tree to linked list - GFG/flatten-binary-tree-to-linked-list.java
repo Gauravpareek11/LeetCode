@@ -112,20 +112,35 @@ class GfG {
 
 class Solution
 {
+    static Node prev=null;
     public static void flatten(Node root)
     {
-        if(root==null) return;
-        Node tempLeft=root.left;
-        Node tempRight=root.right;
+        // if(root==null) return;
+        // Node tempLeft=root.left;
+        // Node tempRight=root.right;
+        // root.left=null;
+        
+        // flatten(tempLeft);
+        // flatten(tempRight);
+        
+        // root.right=tempLeft;
+        
+        // Node current=root;
+        // while(current.right!=null) current=current.right;
+        // current.right=tempRight;
+        prev=null;
+        flat(root);
+       
+    }
+    static void flat(Node root){
+         if(root==null) return;
+        
+        //performing reverse post order raversal
+        flat(root.right);
+        flat(root.left);
+        
+        root.right=prev;
         root.left=null;
-        
-        flatten(tempLeft);
-        flatten(tempRight);
-        
-        root.right=tempLeft;
-        
-        Node current=root;
-        while(current.right!=null) current=current.right;
-        current.right=tempRight;
+        prev=root;
     }
 }
