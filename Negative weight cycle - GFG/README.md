@@ -1,5 +1,5 @@
 # Negative weight cycle
-##  Medium 
+## Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a weighted directed graph with n nodes and m edges. Nodes are labeled from 0 to n-1, the task is to check if it contains a negative weight cycle or not.<br>
 <strong>Note:&nbsp;</strong>edges[i] is&nbsp;defined as u, v and weight.</span><br>
