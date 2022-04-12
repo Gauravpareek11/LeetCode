@@ -52,22 +52,35 @@ class Solution
     { 
          // your code here 
          int[][] dp=new int[n][W+1];
-         for(int[] a:dp){
-             Arrays.fill(a,-1);
-         }
-         return solve(wt,val,n-1,W,dp);
-    }
-    static int solve(int wt[],int[] val,int i,int W,int[][] dp){
-        if(i==0){
-            if(wt[0]<=W) return val[0];
-            return 0;
+        //  for(int[] a:dp){
+        //      Arrays.fill(a,-1);
+        //  }
+        //  return solve(wt,val,n-1,W,dp);
+        for(int i=0;i<=W;i++){
+            if(wt[0]<=i) dp[0][i]=val[0];
+            else dp[0][i]=0;
         }
-        if(dp[i][W]!=-1) return dp[i][W];
-        int not_pick=solve(wt,val,i-1,W,dp);
-        int pick=0;
-        if(wt[i]<=W) pick=val[i]+solve(wt,val,i-1,W-wt[i],dp);
-        return dp[i][W]=Math.max(pick,not_pick);
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=W;j++){
+                int not_pick=dp[i-1][j];
+                int pick=0;
+                if(wt[i]<=j) pick=val[i]+dp[i-1][j-wt[i]];
+                dp[i][j]=Math.max(pick,not_pick);
+            }
+        }
+        return dp[n-1][W];
     }
+    // static int solve(int wt[],int[] val,int i,int W,int[][] dp){
+    //     if(i==0){
+    //         if(wt[0]<=W) return val[0];
+    //         return 0;
+    //     }
+    //     if(dp[i][W]!=-1) return dp[i][W];
+    //     int not_pick=solve(wt,val,i-1,W,dp);
+    //     int pick=0;
+    //     if(wt[i]<=W) pick=val[i]+solve(wt,val,i-1,W-wt[i],dp);
+    //     return dp[i][W]=Math.max(pick,not_pick);
+    // }
 }
 
 
