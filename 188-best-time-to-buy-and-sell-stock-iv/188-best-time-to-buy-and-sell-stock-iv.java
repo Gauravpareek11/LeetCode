@@ -1,6 +1,7 @@
 class Solution {
     public int maxProfit(int k, int[] prices) {
-        int[][][] dp=new int[prices.length+1][2][k+1];
+        int[][] prev=new int[2][k+1];
+        int[][] cur=new int[2][k+1];
         // for(int[][] a:dp){
         //     for(int[] b:a){
         //         Arrays.fill(b,-1);
@@ -12,16 +13,17 @@ class Solution {
                 for(int cap=1;cap<=k;cap++){
                     int profit=0;
                     if(buy==1){
-                        profit=Math.max(-prices[i]+dp[i+1][0][cap],dp[i+1][1][cap]);
+                        profit=Math.max(-prices[i]+prev[0][cap],prev[1][cap]);
                     }
                     else{
-                        profit=Math.max(prices[i]+dp[i+1][1][cap-1],dp[i+1][0][cap]);
+                        profit=Math.max(prices[i]+prev[1][cap-1],prev[0][cap]);
                     }
-                    dp[i][buy][cap]=profit;
+                    cur[buy][cap]=profit;
                 }
             }
+            prev=cur;
         }
-        return dp[0][1][k];
+        return prev[1][k];
     }
 //     int solve(int i,int buy,int[] prices,int k,int[][][] dp){
 //         if(k==0) return 0;
