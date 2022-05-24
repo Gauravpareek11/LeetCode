@@ -7,16 +7,8 @@ class Solution {
         // }
         // return solve(0,1,prices,fee,dp);
         for(int i=prices.length-1;i>=0;i--){
-            for(int buy=0;buy<=1;buy++){
-                int profit=0;
-                if(buy==1){
-                    profit=Math.max(-prices[i]+prev[0],prev[1]);
-                }
-                else{
-                    profit=Math.max(prices[i]-fee+prev[1],prev[0]);
-                }
-                cur[buy]=profit;
-            }
+            cur[1]=Math.max(-prices[i]+prev[0],prev[1]);
+            cur[0]=Math.max(prices[i]-fee+prev[1],prev[0]);
             prev=cur;
         }
         return prev[1];
