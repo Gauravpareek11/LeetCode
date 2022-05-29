@@ -1,11 +1,11 @@
 class Solution {
     public int maxProduct(String[] words) {
         int ans=0;
-        for(int i=0;i<words.length;i++){
-            char[] c=words[i].toCharArray();
-            Arrays.sort(c);
-            words[i]=new String(c);
-        }
+        // for(int i=0;i<words.length;i++){
+        //     char[] c=words[i].toCharArray();
+        //     Arrays.sort(c);
+        //     words[i]=new String(c);
+        // }
         int[] count=new int[26];
         for(int i=0;i<words.length;i++){
             for(int j=i+1;j<words.length;j++){
