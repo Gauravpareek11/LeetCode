@@ -77,15 +77,19 @@ class Solution
         // add your code here
         int p_a=find(a,par);
         int p_b=find(b,par);
-        if(rank[p_a]<=rank[p_b]){
+        if(rank[p_a]<rank[p_b]){
             par[p_a]=p_b;
-            rank[p_b]+=rank[p_a];
-            rank[p_a]=1;
+            // rank[p_b]+=rank[p_a];
+            // rank[p_a]=1;
+        }
+        else if(rank[p_a]>rank[p_b]){
+            par[p_b]=p_a;
         }
         else{
             par[p_b]=p_a;
-            rank[p_a]+=rank[p_b];
-            rank[p_b]=1;
+            // rank[p_a]+=rank[p_b];
+            // rank[p_b]=1;
+            rank[p_b]++;
         }
     }
 
