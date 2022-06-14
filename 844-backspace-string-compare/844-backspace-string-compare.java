@@ -13,8 +13,8 @@ class Solution {
                 if(!s2.isEmpty()) s2.pop();}
             else s2.add(t.charAt(i));
         }
-        System.out.println(s1);
-        System.out.println(s2);
+        // System.out.println(s1);
+        // System.out.println(s2);
         if(s1.size()!=s2.size()) return false;
         while(!s1.isEmpty() && !s2.isEmpty()){
             if(s1.peek()!=s2.peek()) return false;
