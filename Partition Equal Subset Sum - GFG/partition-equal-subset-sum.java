@@ -41,20 +41,32 @@ class Solution{
         else 
         {
             int[][] dp=new int[N][sum/2+1];
-            for(int[] a:dp){
-                Arrays.fill(a,-1);
+            // for(int[] a:dp){
+            //     Arrays.fill(a,-1);
+            // }
+            for(int i=0;i<N;i++){
+                dp[i][0]=1;
             }
-            return solve(0,arr,sum/2,dp);
+            for(int i=1;i<N;i++){
+                for(int j=0;j<=sum/2;j++){
+                    int not_pick=dp[i-1][j];
+                    int pick=0;
+                    if(arr[i]<=j) pick=dp[i-1][j-arr[i]];
+                    dp[i][j]=Math.max(pick,not_pick);
+                }
+            }
+            // return solve(0,arr,sum/2,dp);
+            return dp[N-1][sum/2];
         }
     }
-    static int solve(int i,int[] arr,int sum,int[][] dp){
-        if(sum==0) return 1;
-        if(i==arr.length) return 0;
+    // static int solve(int i,int[] arr,int sum,int[][] dp){
+    //     if(sum==0) return 1;
+    //     if(i==arr.length) return 0;
         
-        if(dp[i][sum]!=-1) return dp[i][sum];
-        int not_pick=solve(i+1,arr,sum,dp);
-        int pick=0;
-        if(arr[i]<=sum) pick=solve(i+1,arr,sum-arr[i],dp);
-        return dp[i][sum]=Math.max(pick,not_pick);
-    }
+    //     if(dp[i][sum]!=-1) return dp[i][sum];
+    //     int not_pick=solve(i+1,arr,sum,dp);
+    //     int pick=0;
+    //     if(arr[i]<=sum) pick=solve(i+1,arr,sum-arr[i],dp);
+    //     return dp[i][sum]=Math.max(pick,not_pick);
+    // }
 }
