@@ -30,11 +30,25 @@ class Solution
     static int lcs(int x, int y, String s1, String s2)
     {
         // your code here
-        int[][] dp = new int[s1.length()][s2.length()];
-        for(int[] a:dp){
-            Arrays.fill(a,-1);
+        int[][] dp = new int[s1.length()+1][s2.length()+1];
+        // for(int[] a:dp){
+        //     Arrays.fill(a,-1);
+        // }
+        // return solve(0,0,s1,s2,dp);
+        
+        for(int i=x-1;i>=0;i--){
+            for(int j=y-1;j>=0;j--){
+                
+                int pick = 0,not_pick = 0;
+                if(s1.charAt(i) == s2.charAt(j)) pick = 1+dp[i+1][j+1];
+                
+                else not_pick = Math.max(dp[i+1][j],dp[i][j+1]);
+                
+                dp[i][j] = Math.max(pick,not_pick);
+            }
         }
-        return solve(0,0,s1,s2,dp);
+        
+        return dp[0][0];
     }
     
     static int solve(int i,int j,String s1,String s2,int[][] dp){
